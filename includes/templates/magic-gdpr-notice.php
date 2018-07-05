@@ -10,6 +10,12 @@
 function magic_gdpr_render_notice () {
   $context = Timber::get_context();
 
+  $cookie = isset($_COOKIE[MAGIC_GDPR_COOKIE_SLUG]) ? $_COOKIE[MAGIC_GDPR_COOKIE_SLUG] : false;
+  $config = wp_parse_args($cookie);
+  if ( !empty( $config ) && !empty( $config['configuration_cookies'] ) ) {
+    return;
+  }
+
   $user = wp_get_current_user();
 
   $context['title'] = magic_get_option( MAGIC_GDPR_SLUG . '_notice_title' );
@@ -19,9 +25,9 @@ function magic_gdpr_render_notice () {
 
   $context['details_title'] = magic_get_option( MAGIC_GDPR_SLUG . '_details_title' );
 
-  $default_cookies = 'Configuration Cookies - Remembers your choices and prevents this box from showing up.\nLogin Cookies - Saves your login until you close the site';
+  $default_cookies = 'Configuration Cookies - Remembers your choices and prevents this box from showing up again.\nLogin Cookies - Saves your login until you close the site. Disabling these cookies will prevent you from logging in.';
 
-  $gdpr_cookies = magic_get_option( MAGIC_GDPR_SLUG . '_cookies', $default_cookies );
+  $gdpr_cookies = magic_get_option( MAGIC_GDPR_COOKIE_SLUG, $default_cookies );
 
   $cookie_strings = explode( PHP_EOL, $gdpr_cookies );
 
@@ -32,7 +38,7 @@ function magic_gdpr_render_notice () {
     $cookie = array(
       'title' => trim( $cookie_array[0] ),
       'description' => trim( $cookie_array[1] ),
-      'slug' => MAGIC_GDPR_SLUG . '_' . str_replace( ' ', '_', strtolower( trim( $cookie_array[0] ) ) ),
+      'slug' => MAGIC_GDPR_SLUG . '_' . magic_slugify( $cookie_array[0] ),
     );
 
     $cookie['on'] = magic_get_option( $cookie['slug'] . '_enabled', false );

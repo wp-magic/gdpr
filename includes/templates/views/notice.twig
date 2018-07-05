@@ -27,8 +27,10 @@
           {% for cookie in cookies %}
           <li>
             <h3>
-              <input type="checkbox"{% if settings_cookie.on %} checked{% endif %} name="{{ cookie.slug }}_enabled">
-              {{ cookie.title }}
+              <label>
+                <input type="checkbox"{% if cookie.on %} checked{% endif %} name="{{ cookie.slug }}_enabled">
+                {{ cookie.title }}
+              </label>
             </h3>
             <div>{{ cookie.description }}</div>
           </li>
