@@ -1,0 +1,39 @@
+.magic_gdpr_notice {
+  position: fixed;
+  bottom: 3em;
+  font-size: 1rem;
+  font-size: 1em;
+  width: 100%;
+  text-align: center;
+
+  .wrapper {
+    width: 60%;
+    min-width: 300px;
+    background-color: @gdpr_background_color;
+    border: @gdpr_border_style @gdpr_border_color;
+    border-radius: @gdpr_border_radius;
+    padding: 0.5em;
+
+    &:hover {
+      .details {
+        height: auto;
+        max-height: 1000px;
+        opacity: 1;
+        transition: max-height 300ms, opacity 500ms;
+      }
+    }
+  }
+
+  h3 {
+    img {
+      max-width: 30%;
+    }
+  }
+
+  .details {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 300ms, opacity 100ms;
+  }
+}

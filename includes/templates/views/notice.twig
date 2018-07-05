@@ -1,0 +1,43 @@
+<div class="magic_gdpr_notice">
+  <div class="wrapper">
+    {% if title %}
+    <h3>
+      {% if logo %}
+      <img src="{{ logo }}" />
+      {% endif %}
+      {{ title }}
+    </h3>
+    {% endif %}
+
+
+    {% if content %}
+    <div>{{ content }}</div>
+    {% endif %}
+
+    <div class="details">
+      {% if details.title %}
+      <h4>{{ details.title }}</h4>
+      {% endif %}
+
+      <form action="{{ form.url }}" method="post">
+        <input type="hidden" name="nonce" value="{{ form.nonce }}" />
+        <input type="hidden" name="action" value="{{ form.action }}" />
+
+        <ul>
+          {% for cookie in cookies %}
+          <li>
+            <h3>
+              <input type="checkbox"{% if settings_cookie.on %} checked{% endif %} name="{{ cookie.slug }}_enabled">
+              {{ cookie.title }}
+            </h3>
+            <div>{{ cookie.description }}</div>
+          </li>
+          {% endfor %}
+          <li>
+            <input type="submit" value="{{ submit_button_text }}" />
+          </li>
+        </ul>
+      </form>
+    </div>
+  </div>
+</div>
