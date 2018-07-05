@@ -24,6 +24,8 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 define( 'MAGIC_GDPR_SLUG', 'magic_gdpr' );
+define( 'MAGIC_GDPR_COOKIE_SLUG', 'magic_gdpr_cookie' );
+define( 'MAGIC_GDPR_COOKIE_SETTINGS_SLUG', 'magic_gdpr_cookies' );
 
 // Required files for registering the post type and taxonomies.
 require_once plugin_dir_path( __FILE__ ) . 'includes/plugin.php';
