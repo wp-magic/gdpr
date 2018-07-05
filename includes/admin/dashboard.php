@@ -45,32 +45,40 @@ add_action( 'admin_menu', function () {
       'label' => 'Cookie settings. These Cookies will be shown in the notice.',
     ),
     array(
-      'name' => 'magic_gdpr_cookies',
-      'type' => 'list',
-      'fields' => array(
-        array(
-          'name' => 'title',
-          'type' => 'text',
-          'label' => 'Cookie nicename',
-          'template' => 'inputs/input.twig',
-        ),
-        array(
-          'name' => 'text',
-          'type' => 'text',
-          'label' => 'Cookie description',
-          'template' => 'inputs/input.twig',
-        ),
+      'name' => MAGIC_GDPR_COOKIE_SLUG,
+      'type' => 'textarea',
+      'default' => 'Configuration Cookies - Remembers your choices and prevents this box from showing up. - wordpress_text_cookie,magic_gpdr_settings_cookie
+      \nLogin Cookies - Saves your login until you close the site - auth',
+      'label' => 'Add one cookie per line. Format: {NAME} - {DESCRIPTION} - cookie_name_1,cookie_name2,...<br>Possible cookie groups: "auth" - removes all auth cookies',
+      'config' => array(
+        'textarea_rows' => 5,
+        'textarea_cols' => 50,
       ),
-      'default' => array(
-        array(
-          'title' => 'Configuration Cookies',
-          'text' => 'Remembers your choices and prevents this box from showing up.',
-        ),
-        array(
-          'title' => 'Login Cookies',
-          'text' => 'Saves your login until you close the site',
-        ),
-      ),
+      // 'type' => 'list',
+      // 'fields' => array(
+      //   array(
+      //     'name' => 'title',
+      //     'type' => 'text',
+      //     'label' => 'Cookie nicename',
+      //     'template' => 'inputs/input.twig',
+      //   ),
+      //   array(
+      //     'name' => 'text',
+      //     'type' => 'text',
+      //     'label' => 'Cookie description',
+      //     'template' => 'inputs/input.twig',
+      //   ),
+      // ),
+      // 'default' => array(
+      //   array(
+      //     'title' => 'Configuration Cookies',
+      //     'text' => 'Remembers your choices and prevents this box from showing up.',
+      //   ),
+      //   array(
+      //     'title' => 'Login Cookies',
+      //     'text' => 'Saves your login until you close the site',
+      //   ),
+      // ),
     ),
 
     array(
