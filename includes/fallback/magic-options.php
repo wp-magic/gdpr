@@ -55,7 +55,7 @@ if ( !function_exists( 'magic_deserialize_cookie' ) ) {
         'name' => $name,
         'slug' => $slug,
         'description' => $desc,
-        'cookies' => $cook,
+        'cookies' => explode( ',', $cook ),
         'on' => $on,
       );
     }
