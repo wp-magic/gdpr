@@ -47,9 +47,8 @@ add_action( 'admin_menu', function () {
     array(
       'name' => MAGIC_GDPR_COOKIE_SLUG,
       'type' => 'textarea',
-      'default' => 'Configuration Cookies - Remembers your choices and prevents this box from showing up. - wordpress_text_cookie,magic_gpdr_settings_cookie
-      \nLogin Cookies - Saves your login until you close the site - auth',
-      'label' => 'Add one cookie per line. Format: {NAME} - {DESCRIPTION} - cookie_name_1,cookie_name2,...<br>Possible cookie groups: "auth" - removes all auth cookies',
+      'default' => MAGIC_GDPR_DEFAULT_COOKIES,
+      'label' => 'Add one cookie per line. Format: NAME ' . MAGIC_GDPR_COOKIE_SEP . ' DESCRIPTION ' . MAGIC_GDPR_COOKIE_SEP . ' cookie_name_1,cookie_name2,... \n<br>Possible cookie group: "auth" - removes all auth cookies',
       'config' => array(
         'textarea_rows' => 5,
         'textarea_cols' => 50,

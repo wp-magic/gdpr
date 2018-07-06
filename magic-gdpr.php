@@ -26,6 +26,21 @@ if ( ! defined( 'WPINC' ) ) {
 define( 'MAGIC_GDPR_SLUG', 'magic_gdpr' );
 define( 'MAGIC_GDPR_COOKIE_SLUG', 'magic_gdpr_cookie' );
 define( 'MAGIC_GDPR_COOKIE_SETTINGS_SLUG', 'magic_gdpr_cookies' );
+define( 'MAGIC_GDPR_COOKIE_SETTINGS_ACTION', 'magic_gdpr_cookies_submit' );
+define( 'MAGIC_GDPR_COOKIE_SEP', '|||' );
+define( 'MAGIC_GDPR_DEFAULT_COOKIES',
+  'Settings' .
+  MAGIC_GDPR_COOKIE_SEP .
+  'Prevents this box from showing up again.' .
+  MAGIC_GDPR_COOKIE_SEP .
+  'wordpress_test_cookie, '. MAGIC_GDPR_COOKIE_SETTINGS_SLUG .
+  PHP_EOL .
+  'Login' .
+  MAGIC_GDPR_COOKIE_SEP .
+  'These cookies allow you to log in.' .
+  MAGIC_GDPR_COOKIE_SEP .
+  'auth'
+);
 
 // Required files for registering the post type and taxonomies.
 require_once plugin_dir_path( __FILE__ ) . 'includes/plugin.php';
