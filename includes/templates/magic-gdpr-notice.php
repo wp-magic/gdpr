@@ -23,6 +23,7 @@ function magic_gdpr_render_notice () {
     return;
   }
 
+  $context['gdpr_enabled'] = magic_get_option( MAGIC_GDPR_SLUG . '_enabled');
   $context['title'] = magic_get_option( MAGIC_GDPR_SLUG . '_notice_title' );
   $context['content'] = magic_get_option( MAGIC_GDPR_SLUG . '_notice_content' );
   $context['image'] = magic_get_option( MAGIC_GDPR_SLUG . '_notice_image' );
