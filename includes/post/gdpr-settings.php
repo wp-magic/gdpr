@@ -1,5 +1,8 @@
 <?php
 
+add_action( 'admin_post_nopriv_' . MAGIC_GDPR_COOKIE_SETTINGS_ACTION, 'magic_gdpr_post_settings' );
+add_action( 'admin_post_' . MAGIC_GDPR_COOKIE_SETTINGS_ACTION, 'magic_gdpr_post_settings' );
+
 function magic_gdpr_post_settings() {
   $ref = $_SERVER['HTTP_REFERER'];
 
@@ -9,7 +12,7 @@ function magic_gdpr_post_settings() {
   $cookies = [];
 
   foreach ( $cookie_strings as $cookie_string ) {
-    $cookie_array = explode( '-', $cookie_string );
+    $cookie_array = explode( MAGIC_GDPR_COOKIE_SEP, $cookie_string );
     $cookie_slug = magic_slugify( $cookie_array[0] );
     $slug = MAGIC_GDPR_SLUG . '_' . $cookie_slug . '_enabled';
 
@@ -22,7 +25,7 @@ function magic_gdpr_post_settings() {
     $cookies[$cookie_slug] = $on;
   }
 
-  if ( !empty($cookies['configuration_cookies'] ) ) {
+  if ( !empty($cookies['settings'] ) ) {
     $ar = '';
     foreach ($cookies as $key => $value ) {
       $ar = add_query_arg($key, $value, $ar);

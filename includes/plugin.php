@@ -10,8 +10,6 @@ require_once 'fallback/index.php';
 // require_once 'custom-fields/index.php';
 
 require_once 'post/gdpr-settings.php';
-add_action( 'admin_post_nopriv_magic_gdpr_settings', 'magic_gdpr_post_settings' );
-add_action( 'admin_post_magic_gdpr_settings', 'magic_gdpr_post_settings' );
 
 require_once 'templates/magic-gdpr-notice.php';
 add_action( 'wp_footer', 'magic_gdpr_render_notice' );
@@ -24,12 +22,17 @@ add_action( 'init', function () {
 } );
 
 function magic_gdpr_unset_cookies( $slug, $category ) {
-  if (trim($category) === 'auth' ) {
-    wp_clear_auth_cookie();
-  } else {
-    $cookies = explode( ',', $category );
-    foreach ( $cookies as $cookie ) {
-      setcookie( trim($cookie), null, 0 );
+  if ( !current_user_can( 'delete_posts' ) ) {
+    if (trim($category) === 'auth' ) {
+      wp_clear_auth_cookie();
+    } else {
+      $cookies = explode( ',', $category );
+      foreach ( $cookies as $cookie ) {
+        $cookie = trim( $cookie );
+        if (!empty( $cookie ) ) {
+          setcookie( $cookie, null, 0 );
+        }
+      }
     }
   }
 }
@@ -46,6 +49,10 @@ add_action( 'init', function () {
 
   foreach ( $cookies as $cookie ) {
     $cookie_array = explode( '-', $cookie );
+    if ( empty( $cookie_array ) ) {
+      return;
+    }
+
     $slug = str_replace(' ', '_', strtolower( trim( $cookie_array[0] ) ) );
 
     $option_name = MAGIC_GDPR_SLUG . '_' . $slug . '_enabled';
@@ -56,6 +63,7 @@ add_action( 'init', function () {
     }
   }
 }, PHP_INT_MAX - 1 );
+
 
 if ( is_admin() ) {
   require_once 'admin/requirements.php';
