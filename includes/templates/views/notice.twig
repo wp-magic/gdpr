@@ -19,24 +19,21 @@
       <h4>{{ details.title }}</h4>
       {% endif %}
 
-      <form action="{{ form.url }}" method="post">
+      <form action="{{ form.url }}" method="POST">
         <input type="hidden" name="nonce" value="{{ form.nonce }}" />
         <input type="hidden" name="action" value="{{ form.action }}" />
 
         <ul>
           {% for cookie in cookies %}
           <li>
-            <h3>
-              <label>
-                <input type="checkbox"{% if cookie.on %} checked{% endif %} name="{{ cookie.slug }}_enabled">
-                {{ cookie.title }}
-              </label>
-            </h3>
-            <div>{{ cookie.description }}</div>
+            {% include 'cookie.twig' %}
           </li>
           {% endfor %}
           <li>
             <input type="submit" value="{{ submit_button_text }}" />
+            {% if accept_all_enabled %}
+              <input type="submit" name="accept_all" value="{{ accept_all_button_text }}" />
+            {% endif %}
           </li>
         </ul>
       </form>
