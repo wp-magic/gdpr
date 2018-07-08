@@ -23,6 +23,10 @@ if ( ! defined( 'WPINC' ) ) {
   die;
 }
 
+if ( !defined( 'MAGIC_DASHBOARD_COOKIE_SEP' ) ) {
+  define( 'MAGIC_DASHBOARD_COOKIE_SEP', '|||' );
+}
+
 define( 'MAGIC_GDPR_SLUG', 'magic_gdpr' );
 define( 'MAGIC_GDPR_COOKIE_SLUG', 'magic_gdpr_cookie' );
 define( 'MAGIC_GDPR_COOKIE_SETTINGS_SLUG', 'magic_gdpr_cookies' );
@@ -34,7 +38,7 @@ define( 'MAGIC_GDPR_DEFAULT_COOKIES',
   MAGIC_DASHBOARD_COOKIE_SEP .
   'Prevents this box from showing up again.' .
   MAGIC_DASHBOARD_COOKIE_SEP .
-  'wordpress_test_cookie, '. MAGIC_GDPR_COOKIE_SETTINGS_SLUG .
+  'wordpress_test_cookie, ' . MAGIC_GDPR_COOKIE_SETTINGS_SLUG .
   PHP_EOL .
   'Authentication' .
   MAGIC_DASHBOARD_COOKIE_SEP .
@@ -45,10 +49,8 @@ define( 'MAGIC_GDPR_DEFAULT_COOKIES',
   'auth'
 );
 
-// Required files for registering the post type and taxonomies.
 require_once plugin_dir_path( __FILE__ ) . 'includes/plugin.php';
 
-// Register callback that is fired when the plugin is activated.
 register_activation_hook( __FILE__, function () {
   flush_rewrite_rules();
 } );

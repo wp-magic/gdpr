@@ -1,7 +1,7 @@
 <?php
 
 add_action( 'admin_menu', function () {
-  $title = 'Magic GDPR Notice Settings';
+  $title = 'Magic GDPR Settings';
 
   $settings = array(
     array(
@@ -161,4 +161,4 @@ add_action( 'admin_menu', function () {
     'title' => $title,
     'settings' => $settings,
    ) );
-} );
+}, 2 );

@@ -6,15 +6,17 @@
  * @license   GPL-2.0+
  */
 
-require_once 'fallback/index.php';
-// require_once 'custom-fields/index.php';
-
 require_once 'post/gdpr-settings.php';
-
 require_once 'templates/magic-gdpr-notice.php';
-add_action( 'wp_footer', 'magic_gdpr_render_notice' );
-
 require_once 'styles/index.php';
+
+if ( is_admin() ) {
+  require_once 'admin/requirements.php';
+  require_once 'admin/dashboard.php';
+}
+
+add_action( 'wp_footer', 'magic_gdpr_render_notice' );
+add_action( 'init', 'magic_gdpr_remove_cookies', PHP_INT_MAX - 1 );
 
 add_action( 'init', function () {
   $domain = MAGIC_GDPR_SLUG;
@@ -89,14 +91,4 @@ if ( !function_exists( 'magic_gdpr_set_cookies' ) ) {
     wp_redirect( $ref );
     exit;
   }
-}
-
-
-
-add_action( 'init', 'magic_gdpr_remove_cookies', PHP_INT_MAX - 1 );
-
-if ( is_admin() ) {
-  require_once 'admin/requirements.php';
-
-  require_once 'admin/dashboard.php';
 }
