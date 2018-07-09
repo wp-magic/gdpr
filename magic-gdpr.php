@@ -49,6 +49,8 @@ define( 'MAGIC_GDPR_DEFAULT_COOKIES',
   'auth'
 );
 
+define( 'MAGIC_GDPR_FORM_INPUT_TEMPLATE', plugin_dir_path( __FILE__ ) . 'includes/templates/views/form-cookies.twig' );
+
 require_once plugin_dir_path( __FILE__ ) . 'includes/plugin.php';
 
 register_activation_hook( __FILE__, function () {
