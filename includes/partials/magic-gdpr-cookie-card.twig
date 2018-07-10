@@ -1,0 +1,8 @@
+<h3>
+  {% include 'magic-form-checkbox.twig' with {
+    name: cookie.slug,
+    text: cookie.name,
+    on: cookie.on
+  } %}
+</h3>
+<div>{{ cookie.description }}</div>
