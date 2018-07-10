@@ -10,8 +10,6 @@
 function magic_gdpr_render_notice () {
   $context = Timber::get_context();
 
-  $cookies = magic_get_option( MAGIC_GDPR_COOKIE_SLUG );
-
   $cookie_query_string = isset( $_COOKIE[MAGIC_GDPR_COOKIE_SLUG] )
     ? $_COOKIE[MAGIC_GDPR_COOKIE_SLUG]
     : 0;
@@ -23,6 +21,8 @@ function magic_gdpr_render_notice () {
     // no need to show this form again.
     return;
   }
+
+  $cookies = magic_get_option( MAGIC_GDPR_COOKIE_SLUG );
 
   $context['title'] = magic_get_option( MAGIC_GDPR_SLUG . '_notice_title' );
   $context['content'] = magic_get_option( MAGIC_GDPR_SLUG . '_notice_content' );

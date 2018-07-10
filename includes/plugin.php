@@ -20,7 +20,7 @@ if ( is_admin() ) {
 add_action( 'wp_footer', 'magic_gdpr_render_notice' );
 add_action( 'init', 'magic_gdpr_remove_cookies', PHP_INT_MAX - 1 );
 
-add_action( 'init', function () {
+add_action('init', function () {
   $domain = MAGIC_GDPR_SLUG;
-  load_plugin_textdomain( $domain, FALSE, plugin_dir_path( __FILE__ ) . '/languages' );
+  load_plugin_textdomain( $domain, FALSE, plugin_dir_path( __FILE__ ) . 'languages' );
 } );

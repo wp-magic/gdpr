@@ -10,7 +10,6 @@
       </h3>
       {% endif %}
 
-
       {% if content %}
       <div>{{ content }}</div>
       {% endif %}
@@ -27,7 +26,7 @@
           <ul>
             {% for cookie in cookies %}
             <li>
-              {% include 'cookie.twig' %}
+              {% include 'magic-gdpr-cookie-card.twig' %}
             </li>
             {% endfor %}
             <li>
