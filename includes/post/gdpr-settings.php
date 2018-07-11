@@ -17,7 +17,7 @@ function magic_gdpr_post_cookie_notice () {
 
     $slug = $cookie['slug'];
 
-    if ( !empty( $cookie['on'] ) || in_array( $slug, $forced_cookies ) ) {
+    if ( !empty( $cookie['on'] ) ) {
       $cookie_query_string = add_query_arg( $slug, 1, $cookie_query_string );
     }
   }
