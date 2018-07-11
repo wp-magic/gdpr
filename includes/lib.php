@@ -1,8 +1,9 @@
 <?php
 
 if ( !function_exists( 'magic_gdpr_check_cookies') ) {
-  function magic_gdpr_check_cookies() {
-    return !empty( $_COOKIE[MAGIC_GDPR_COOKIE_SLUG] );
+  function magic_gdpr_check_cookies( string $cookie = 'auth' ) {
+    $cookie_vals = wp_parse_args( $_COOKIE[MAGIC_GDPR_COOKIE_SLUG] );
+    return !empty( $cookie_vals[$cookie] );
   }
 }
 
@@ -68,5 +69,18 @@ if ( !function_exists( 'magic_gdpr_set_cookies' ) ) {
       $secure,
       $http_only
     );
+  }
+}
+
+if ( !function_exists( 'magic_gdpr_create_context' ) ) {
+  function magic_gdpr_create_context( array $context = [] ) {
+    $context['gdpr_exists'] = true;
+    $enabled_cookies = wp_parse_args( $_COOKIE[MAGIC_GDPR_COOKIE_SLUG] );
+    $context['cookies'] = $enabled_cookies;
+
+    $context['post']->before_allow_cookies_text = magic_get_option( MAGIC_GDPR_SLUG . '_before_allow_cookies_text', '' );
+    $context['post']->after_allow_cookies_text = magic_get_option( MAGIC_GDPR_SLUG . '_after_allow_cookies_text', 'Allow Login Cookies' );
+
+    return $context;
   }
 }
