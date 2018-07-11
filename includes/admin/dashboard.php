@@ -50,6 +50,20 @@ add_action( 'admin_menu', function () {
       'label' => 'Accept All Button text',
     ),
 
+    array(
+      'name' => MAGIC_GDPR_SLUG . '_before_allow_cookies_text',
+      'type' => 'text',
+      'default' => '',
+      'label' => 'Text shown before cookie accept checkbox in forms',
+    ),
+
+    array(
+      'name' => MAGIC_GDPR_SLUG . '_after_allow_cookies_text',
+      'type' => 'text',
+      'default' => 'Allow login cookies',
+      'label' => 'Text shown after cookie accept checkbox in forms',
+    ),
+
     array (
       'name' => MAGIC_GDPR_SLUG . '_notice_content',
       'type' => 'wysiwyg',
