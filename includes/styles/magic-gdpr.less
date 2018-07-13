@@ -12,7 +12,8 @@
     background-color: @gdpr_background_color;
     border: @gdpr_border_style @gdpr_border_color;
     border-radius: @gdpr_border_radius;
-    padding: 0.5em;
+    padding: 1em;
+    max-width: 600px;
 
     &:hover {
       .details {
@@ -25,9 +26,15 @@
   }
 
   h3 {
+    margin-top: 0.5em;
+
     img {
-      max-width: 30%;
+      height: 1em;
     }
+  }
+
+  input[type=submit] {
+    margin: 1em 0 0;
   }
 
   .details {
