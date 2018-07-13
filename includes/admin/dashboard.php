@@ -21,7 +21,7 @@ add_action( 'admin_menu', function () {
       'type' => 'image',
       'label' => 'Logo Image to use next to the header text',
     ),
-    
+
     array (
       'name' => 'submit_buttons_header',
       'type' => 'header',
@@ -48,20 +48,6 @@ add_action( 'admin_menu', function () {
       'type' => 'text',
       'default' => 'Accept All Cookies',
       'label' => 'Accept All Button text',
-    ),
-
-    array(
-      'name' => 'before_allow_cookies_text',
-      'type' => 'text',
-      'default' => '',
-      'label' => 'Text shown before cookie accept checkbox in forms',
-    ),
-
-    array(
-      'name' => 'after_allow_cookies_text',
-      'type' => 'text',
-      'default' => 'Allow login cookies',
-      'label' => 'Text shown after cookie accept checkbox in forms',
     ),
 
     array (
@@ -99,31 +85,6 @@ add_action( 'admin_menu', function () {
         'textarea_rows' => 5,
         'textarea_cols' => 50,
       ),
-      // 'type' => 'list',
-      // 'fields' => array(
-      //   array(
-      //     'name' => 'title',
-      //     'type' => 'text',
-      //     'label' => 'Cookie nicename',
-      //     'template' => 'inputs/input.twig',
-      //   ),
-      //   array(
-      //     'name' => 'text',
-      //     'type' => 'text',
-      //     'label' => 'Cookie description',
-      //     'template' => 'inputs/input.twig',
-      //   ),
-      // ),
-      // 'default' => array(
-      //   array(
-      //     'title' => 'Configuration Cookies',
-      //     'text' => 'Remembers your choices and prevents this box from showing up.',
-      //   ),
-      //   array(
-      //     'title' => 'Login Cookies',
-      //     'text' => 'Saves your login until you close the site',
-      //   ),
-      // ),
     ),
 
     array(
