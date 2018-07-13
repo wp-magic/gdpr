@@ -23,10 +23,6 @@ if ( ! defined( 'WPINC' ) ) {
   die;
 }
 
-if ( !defined( 'MAGIC_DASHBOARD_COOKIE_SEP' ) ) {
-  define( 'MAGIC_DASHBOARD_COOKIE_SEP', '|||' );
-}
-
 define( 'MAGIC_GDPR_SLUG', 'magic_gdpr' );
 define( 'MAGIC_GDPR_COOKIE_SLUG', 'magic_gdpr_cookie' );
 define( 'MAGIC_GDPR_COOKIE_SETTINGS_SLUG', 'magic_gdpr_cookies' );
