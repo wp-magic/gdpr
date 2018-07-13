@@ -78,9 +78,6 @@ if ( !function_exists( 'magic_gdpr_create_context' ) ) {
     $enabled_cookies = wp_parse_args( $_COOKIE[MAGIC_GDPR_COOKIE_SLUG] );
     $context['cookies'] = $enabled_cookies;
 
-    $context['post']->before_allow_cookies_text = magic_get_option( MAGIC_GDPR_SLUG . '_before_allow_cookies_text', '' );
-    $context['post']->after_allow_cookies_text = magic_get_option( MAGIC_GDPR_SLUG . '_after_allow_cookies_text', 'Allow Login Cookies' );
-
     return $context;
   }
 }
