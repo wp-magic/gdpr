@@ -12,11 +12,12 @@ function magic_gdpr_render_notice () {
 
   $cookie_query_string = isset( $_COOKIE[MAGIC_GDPR_COOKIE_SLUG] )
     ? $_COOKIE[MAGIC_GDPR_COOKIE_SLUG]
-    : 0;
+    : '';
 
   $config = wp_parse_args( $cookie_query_string );
 
   $context['gdpr_enabled'] = magic_get_option( MAGIC_GDPR_SLUG . '_enabled', 0);
+
   if ( !empty( $config ) && !empty( $config['settings'] ) || empty( $context['gdpr_enabled'] ) ) {
     // no need to show this form again.
     return;
