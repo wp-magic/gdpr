@@ -17,12 +17,12 @@ function magic_gdpr_render_notice () {
   $config = wp_parse_args( $cookie_query_string );
 
   if ( !empty( $config ) && !empty( $config['settings'] ) ) {
-    $context['hidden'] = true;
+    return;
   }
 
   $context['gdpr_enabled'] = magic_get_option( MAGIC_GDPR_SLUG . '_enabled', 0);
   if ( empty( $context['gdpr_enabled'] ) ) {
-    $context['hidden'] = true;
+    return;
   }
 
   $context['title'] = magic_get_option( MAGIC_GDPR_SLUG . '_notice_title' );
