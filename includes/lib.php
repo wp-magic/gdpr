@@ -12,15 +12,17 @@ if ( !function_exists( 'magic_gdpr_remove_cookies' ) ) {
     $gdpr_cookies = magic_get_option( MAGIC_GDPR_COOKIE_SLUG, MAGIC_GDPR_DEFAULT_COOKIES );
     $cookies = magic_deserialize_cookie( $gdpr_cookies );
 
+    setcookie( 'PHPSESSID', null, 0 );
+
     foreach ( $cookies as $cookie ) {
       $allowed_cookies = wp_parse_args( $_COOKIE[MAGIC_GDPR_COOKIE_SLUG] );
 
       if ( empty( $allowed_cookies[$cookie['slug']] ) ) {
         if ( !current_user_can( 'delete_posts' ) ) {
-          if ($cookie['cookies'] === 'auth' ) {
-            wp_clear_auth_cookie();
-          } else {
-            foreach ( $cookie['cookies'] as $cc ) {
+          foreach ( $cookie['cookies'] as $cc ) {
+            if ($cc === 'auth' ) {
+              wp_clear_auth_cookie();
+            } else {
               setcookie( magic_slugify($cc), null, 0 );
             }
           }

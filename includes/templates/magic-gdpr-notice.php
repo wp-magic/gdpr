@@ -16,14 +16,14 @@ function magic_gdpr_render_notice () {
 
   $config = wp_parse_args( $cookie_query_string );
 
-  $context['gdpr_enabled'] = magic_get_option( MAGIC_GDPR_SLUG . '_enabled', 0);
-
-  if ( !empty( $config ) && !empty( $config['settings'] ) || empty( $context['gdpr_enabled'] ) ) {
-    // no need to show this form again.
-    return;
+  if ( !empty( $config ) && !empty( $config['settings'] ) ) {
+    $context['hidden'] = true;
   }
 
-  $cookies = magic_get_option( MAGIC_GDPR_COOKIE_SLUG );
+  $context['gdpr_enabled'] = magic_get_option( MAGIC_GDPR_SLUG . '_enabled', 0);
+  if ( empty( $context['gdpr_enabled'] ) ) {
+    $context['hidden'] = true;
+  }
 
   $context['title'] = magic_get_option( MAGIC_GDPR_SLUG . '_notice_title' );
   $context['content'] = magic_get_option( MAGIC_GDPR_SLUG . '_notice_content' );
