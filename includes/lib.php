@@ -10,7 +10,7 @@ if ( !function_exists( 'magic_gdpr_check_cookies') ) {
 if ( !function_exists( 'magic_gdpr_remove_cookies' ) ) {
   function magic_gdpr_remove_cookies() {
     $gdpr_cookies = magic_get_option( MAGIC_GDPR_COOKIE_SLUG, MAGIC_GDPR_DEFAULT_COOKIES );
-    $cookies = magic_deserialize_cookie( $gdpr_cookies );
+    $cookies = magic_deserialize_cookie( $gdpr_cookies, MAGIC_GDPR_COOKIE_SEP );
 
     setcookie( 'PHPSESSID', null, 0 );
 
@@ -36,7 +36,7 @@ if ( !function_exists( 'magic_gdpr_set_cookies' ) ) {
   function magic_gdpr_set_cookies( array $forced_cookies = [] ) {
     $gdpr_cookies = magic_get_option( MAGIC_GDPR_COOKIE_SLUG, MAGIC_GDPR_DEFAULT_COOKIES );
 
-    $cookies = magic_deserialize_cookie($gdpr_cookies);
+    $cookies = magic_deserialize_cookie($gdpr_cookies, MAGIC_GDPR_COOKIE_SEP);
 
     $cookie_query_string = '';
 

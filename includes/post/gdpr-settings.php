@@ -8,7 +8,7 @@ function magic_gdpr_post_cookie_notice () {
 
   $gdpr_cookies = magic_get_option( MAGIC_GDPR_COOKIE_SLUG, MAGIC_GDPR_DEFAULT_COOKIES );
 
-  $cookies = magic_deserialize_cookie($gdpr_cookies);
+  $cookies = magic_deserialize_cookie( $gdpr_cookies, MAGIC_GDPR_COOKIE_SEP );
 
   $cookie_query_string = '';
 

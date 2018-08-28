@@ -74,11 +74,11 @@ add_action( 'admin_menu', function () {
       'default' => MAGIC_GDPR_DEFAULT_COOKIES,
       'label' =>
         'Add one cookie per line. Format: NAME ' .
-        MAGIC_DASHBOARD_COOKIE_SEP .
+        MAGIC_GDPR_COOKIE_SEP .
         'SLUG' .
-        MAGIC_DASHBOARD_COOKIE_SEP .
+        MAGIC_GDPR_COOKIE_SEP .
         ' DESCRIPTION ' .
-        MAGIC_DASHBOARD_COOKIE_SEP .
+        MAGIC_GDPR_COOKIE_SEP .
         ' cookie_name_1,cookie_name2,...' .
         '<br>Possible cookie group: "auth" - removes all auth cookies',
       'config' => array(

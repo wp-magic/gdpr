@@ -23,8 +23,8 @@ if ( ! defined( 'WPINC' ) ) {
   die;
 }
 
-if ( !defined( 'MAGIC_DASHBOARD_COOKIE_SEP' ) ) {
-  define( 'MAGIC_DASHBOARD_COOKIE_SEP', '|||' );
+if ( !defined( 'MAGIC_GDPR_COOKIE_SEP' ) ) {
+  define( 'MAGIC_GDPR_COOKIE_SEP', '|||' );
 }
 
 define( 'MAGIC_GDPR_SLUG', 'magic_gdpr' );
@@ -33,19 +33,19 @@ define( 'MAGIC_GDPR_COOKIE_SETTINGS_SLUG', 'magic_gdpr_cookies' );
 define( 'MAGIC_GDPR_COOKIE_SETTINGS_ACTION', 'magic_gdpr_cookies_submit' );
 define( 'MAGIC_GDPR_DEFAULT_COOKIES',
   'Settings' .
-  MAGIC_DASHBOARD_COOKIE_SEP .
+  MAGIC_GDPR_COOKIE_SEP .
   'settings' .
-  MAGIC_DASHBOARD_COOKIE_SEP .
+  MAGIC_GDPR_COOKIE_SEP .
   'Prevents this box from showing up again.' .
-  MAGIC_DASHBOARD_COOKIE_SEP .
+  MAGIC_GDPR_COOKIE_SEP .
   'wordpress_test_cookie, ' . MAGIC_GDPR_COOKIE_SETTINGS_SLUG .
   PHP_EOL .
   'Authentication' .
-  MAGIC_DASHBOARD_COOKIE_SEP .
+  MAGIC_GDPR_COOKIE_SEP .
   'auth' .
-  MAGIC_DASHBOARD_COOKIE_SEP .
+  MAGIC_GDPR_COOKIE_SEP .
   'These cookies allow you to log in.' .
-  MAGIC_DASHBOARD_COOKIE_SEP .
+  MAGIC_GDPR_COOKIE_SEP .
   'auth'
 );
 
