@@ -10,7 +10,7 @@
 function magic_gdpr_render_notice () {
   $context = Timber::get_context();
 
-  $cookie_query_string = isset( $_COOKIE[MAGIC_GDPR_COOKIE_SLUG] )
+  $cookie_query_string = !empty( $_COOKIE[MAGIC_GDPR_COOKIE_SLUG] )
     ? $_COOKIE[MAGIC_GDPR_COOKIE_SLUG]
     : '';
 
@@ -31,9 +31,7 @@ function magic_gdpr_render_notice () {
   $context['submit_button_text'] = magic_get_option( MAGIC_GDPR_SLUG . '_submit_button_text', 'Apply Changes' );
   $context['details_title'] = magic_get_option( MAGIC_GDPR_SLUG . '_details_title' );
 
-  $default_cookies = MAGIC_GDPR_DEFAULT_COOKIES;
-
-  $gdpr_cookies = magic_get_option( MAGIC_GDPR_COOKIE_SLUG, $default_cookies );
+  $gdpr_cookies = magic_get_option( MAGIC_GDPR_COOKIE_SLUG, MAGIC_GDPR_DEFAULT_COOKIES );
   $context['cookies'] = magic_deserialize_cookie( $gdpr_cookies );
 
   $context['accept_all_enabled'] = magic_get_option( MAGIC_GDPR_SLUG . '_accept_all_enabled');
