@@ -31,6 +31,7 @@
 
   h3 {
     margin-top: 0.5em;
+    color: @gdpr_title_color;
 
     img {
       height: 1em;
@@ -41,11 +42,20 @@
     margin: 1em 0 0;
   }
 
+  .info {
+    color: @gdpr_text_color;
+  }
+
   .details {
+    color: @gdpr_text_color;
     max-height: 0;
     opacity: 0;
     overflow: hidden;
     transition: max-height 300ms, opacity 100ms;
+  }
+
+  ul {
+    list-style: none;
   }
 }
 
