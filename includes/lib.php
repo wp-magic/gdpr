@@ -15,7 +15,9 @@ if ( !function_exists( 'magic_gdpr_remove_cookies' ) ) {
     setcookie( 'PHPSESSID', null, 0 );
 
     foreach ( $cookies as $cookie ) {
-      $allowed_cookies = wp_parse_args( $_COOKIE[MAGIC_GDPR_COOKIE_SLUG] );
+      if (!empty($_COOKIE[MAGIC_GDPR_COOKIE_SLUG] ) ) {
+        $allowed_cookies = wp_parse_args( $_COOKIE[MAGIC_GDPR_COOKIE_SLUG] );
+      }
 
       if ( empty( $allowed_cookies[$cookie['slug']] ) ) {
         if ( !current_user_can( 'delete_posts' ) ) {
@@ -41,8 +43,6 @@ if ( !function_exists( 'magic_gdpr_set_cookies' ) ) {
     $cookie_query_string = '';
 
     foreach ($cookies as $cookie ) {
-      $allowed_cookies = wp_parse_args( $_COOKIE[MAGIC_GDPR_COOKIE_SLUG] );
-
       $slug = $cookie['slug'];
 
       if ( !empty( $cookie['on'] ) || in_array( $slug, $forced_cookies ) ) {
@@ -77,8 +77,10 @@ if ( !function_exists( 'magic_gdpr_set_cookies' ) ) {
 if ( !function_exists( 'magic_gdpr_create_context' ) ) {
   function magic_gdpr_create_context( array $context = [] ) {
     $context['gdpr_exists'] = true;
-    $enabled_cookies = wp_parse_args( $_COOKIE[MAGIC_GDPR_COOKIE_SLUG] );
-    $context['cookies'] = $enabled_cookies;
+    if (!empty($_COOKIE[MAGIC_GDPR_COOKIE_SLUG] ) ) {
+      $enabled_cookies = wp_parse_args( $_COOKIE[MAGIC_GDPR_COOKIE_SLUG] );
+      $context['cookies'] = $enabled_cookies;
+    }
 
     return $context;
   }
