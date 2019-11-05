@@ -11,19 +11,17 @@ function magic_gdpr_post_cookie_notice () {
   $cookies = magic_deserialize_cookie( $gdpr_cookies, MAGIC_GDPR_COOKIE_SEP );
 
   $cookie_query_string = '';
-
+  
   foreach ($cookies as $cookie ) {
-    $allowed_cookies = wp_parse_args( $_COOKIE[MAGIC_GDPR_COOKIE_SLUG] );
-
     $slug = $cookie['slug'];
 
     if ( !empty( $cookie['on'] ) ) {
       $cookie_query_string = add_query_arg( $slug, 1, $cookie_query_string );
     }
   }
-
+  
   $cookie_query_string = substr( $cookie_query_string, 1 );
-
+  
   if ( empty( $cookie_query_string ) ) {
     wp_redirect( $ref );
     exit;
@@ -31,7 +29,14 @@ function magic_gdpr_post_cookie_notice () {
 
   $one_year = 365 * 60 * 60 * 24;
   $path = '/';
-  $domain = ($_SERVER['HTTP_HOST'] != 'localhost') ? $_SERVER['HTTP_HOST'] : false;
+  $server = $_SERVER['HTTP_HOST'];
+
+  if ($server === 'localhost:8080' || $server === 'localhost') {
+    $domain = 'localhost';  
+  } else {
+    $domain = $server;
+  }
+
   $secure = isset( $_SERVER['HTTPS'] );
   $http_only = true;
 
