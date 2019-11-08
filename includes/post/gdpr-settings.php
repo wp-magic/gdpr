@@ -12,18 +12,14 @@ add_action( 'admin_post_' . MAGIC_GDPR_COOKIE_SETTINGS_ACTION, 'magic_gdpr_post_
  * Handle post request for cookie notice form.
  */
 function magic_gdpr_post_cookie_notice() {
-	if ( empty( $_POST['nonce'] ) ) {
+	$post = magic_verify_nonce( MAGIC_GDPR_COOKIE_SETTINGS_ACTION, false );
+
+	if ( empty( $post ) ) {
 		exit;
 	}
 
-	$nonce_valid = wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), MAGIC_GDPR_COOKIE_SETTINGS_ACTION );
-
-	if ( ! $nonce_valid ) {
-		exit;
-	}
-
-	if ( ! empty( $_SERVER['HTTP_REFERER'] ) ) {
-		$ref = sanitize_text_field( wp_unslash( $_SERVER['HTTP_REFERER'] ) );
+	if ( ! empty( $_SERVER['MAGIC_REFERER'] ) ) {
+		$ref = sanitize_text_field( wp_unslash( $_SERVER['MAGIC_REFERER'] ) );
 	} else {
 		$ref = '/';
 	}
@@ -33,8 +29,8 @@ function magic_gdpr_post_cookie_notice() {
 	$cookies = magic_deserialize_cookie( $gdpr_cookies, MAGIC_GDPR_COOKIE_SEP );
 
 	foreach ( $cookies as $key => $cookie ) {
-		$slug         = $cookie['slug'];
-		$cookies[ $key ]['on'] = ! empty( $_POST[ $slug ] ) || ! empty( $_POST['accept-all'] );
+		$slug                  = $cookie['slug'];
+		$cookies[ $key ]['on'] = ! empty( $post[ $slug ] ) || ! empty( $post['accept-all'] );
 	}
 
 	$cookie_query_string = '';
