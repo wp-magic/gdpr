@@ -144,6 +144,7 @@ add_action(
 				'slug'     => MAGIC_GDPR_SLUG,
 				'title'    => $title,
 				'settings' => $settings,
+				'action'   => MAGIC_GDPR_DASHBOARD_POST_SETTINGS,
 			)
 		);
 	},

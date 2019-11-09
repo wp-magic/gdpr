@@ -82,6 +82,8 @@ If you do not allow login cookies, the login will not work.',
 
 define( 'MAGIC_GDPR_FORM_INPUT_TEMPLATE', 'magic-gdpr-form-inputs.twig' );
 
+define( 'MAGIC_GDPR_DASHBOARD_POST_SETTINGS', 'magic-gdpr-post-settings' );
+
 require_once plugin_dir_path( __FILE__ ) . 'includes/plugin.php';
 
 register_activation_hook(
