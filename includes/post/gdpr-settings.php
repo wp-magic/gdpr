@@ -46,8 +46,7 @@ function magic_gdpr_post_cookie_notice() {
 	$cookie_query_string = substr( $cookie_query_string, 1 );
 
 	if ( empty( $cookie_query_string ) ) {
-		wp_safe_redirect( $ref );
-		exit;
+		magic_redirect( $ref );
 	}
 
 	$one_year = 365 * 60 * 60 * 24;
@@ -73,6 +72,5 @@ function magic_gdpr_post_cookie_notice() {
 		$http_only
 	);
 
-	wp_safe_redirect( $ref );
-	exit;
+	magic_redirect( $ref );
 }
